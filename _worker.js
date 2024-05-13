@@ -190,7 +190,7 @@ export default {
 
                     default:
                         // return new Response('Not found', { status: 404 });
-                        url.hostname = 'https://speed.cloudflare.com';
+                        url.hostname = 'https://speed.measurementlab.net/#/';
                         url.protocol = 'https:';
                         request = new Request(url, request);
                         return await fetch(request);
