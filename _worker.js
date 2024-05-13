@@ -190,7 +190,7 @@ export default {
 
                     default:
                         // return new Response('Not found', { status: 404 });
-                        url.hostname = 'https://www.speedtest.net';
+                        url.hostname = 'www.speedtest.net';
                         url.protocol = 'https:';
                         request = new Request(url, request);
                         return await fetch(request);
@@ -274,7 +274,7 @@ async function vlessOverWSHandler(request) {
 				isDns = true;
 			}
 
-			// ["version", "附加信息长度 N"]
+			// ["version", "é™„åŠ ä¿¡æ¯é•¿åº¦ N"]
 			const vlessResponseHeader = new Uint8Array([vlessVersion[0], 0]);
 			const rawClientData = chunk.slice(rawDataIndex);
 
@@ -786,7 +786,7 @@ const getNormalConfigs = async (env, hostName, client) => {
     ];
 
     Addresses.forEach((addr) => {
-        let remark = `💦 BPB - ${addr}`;
+        let remark = `ðŸ’¦ BPB - ${addr}`;
         remark = remark.length <= 30 ? remark : `${remark.slice(0,29)}...`;
 
         vlessWsTls += 'vless' + `://${userID}@${addr}:443?encryption=none&security=tls&type=ws&host=${
@@ -929,7 +929,7 @@ const buildWorkerLessConfig = async (env, client) => {
     fakeOutbound.tag = 'fake-outbound';
 
     let fragConfig = structuredClone(xrayConfigTemp);
-    fragConfig.remarks  = '💦 BPB Frag - WorkerLess ⭐'
+    fragConfig.remarks  = 'ðŸ’¦ BPB Frag - WorkerLess â­'
     fragConfig.dns.servers[0] = remoteDNS;
     fragConfig.dns.servers.pop();
     fragConfig.outbounds[0].settings.domainStrategy = 'UseIP';
@@ -1008,7 +1008,7 @@ const getFragmentConfigs = async (env, hostName, client) => {
 
         let fragConfig = structuredClone(xrayConfigTemp);
         let outbound = structuredClone(xrayOutboundTemp);
-        let remark = `💦 BPB Frag - ${addr}`;
+        let remark = `ðŸ’¦ BPB Frag - ${addr}`;
         delete outbound.mux;
         delete outbound.streamSettings.grpcSettings;
         delete outbound.streamSettings.realitySettings;
@@ -1077,7 +1077,7 @@ const getFragmentConfigs = async (env, hostName, client) => {
 
 
     let bestPing = structuredClone(xrayConfigTemp);
-    bestPing.remarks = '💦 BPB Frag - Best Ping 💥';
+    bestPing.remarks = 'ðŸ’¦ BPB Frag - Best Ping ðŸ’¥';
     bestPing.dns.servers[0] = remoteDNS;
     bestPing.dns.servers[1].address = localDNS;
     bestPing.outbounds[0].settings.fragment.length = `${lengthMin}-${lengthMax}`;
@@ -1542,22 +1542,22 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
 	</head>
 	
 	<body>
-		<h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> 💦</h1>
+		<h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> ðŸ’¦</h1>
 		<div class="form-container">
-            <h2>FRAGMENT SETTINGS ⚙️</h2>
+            <h2>FRAGMENT SETTINGS âš™ï¸</h2>
 			<form id="configForm">
 				<div class="form-control">
-					<label for="remoteDNS">🌏 Remote DNS</label>
+					<label for="remoteDNS">ðŸŒ Remote DNS</label>
 					<input type="url" id="remoteDNS" name="remoteDNS" value="${remoteDNS}" required>
 				</div>
 				<div class="form-control">
-					<label for="localDNS">🏚️ Local DNS</label>
+					<label for="localDNS">ðŸšï¸ Local DNS</label>
 					<input type="text" id="localDNS" name="localDNS" value="${localDNS}"
 						pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|localhost$"
 						title="Please enter a valid DNS IP Address or localhost!"  required>
 				</div>	
 				<div class="form-control">
-					<label for="fragmentLengthMin">📐 Length</label>
+					<label for="fragmentLengthMin">ðŸ“ Length</label>
 					<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline;">
 						<input type="number" id="fragmentLengthMin" name="fragmentLengthMin" value="${lengthMin}" min="10" required>
 						<span style="text-align: center; white-space: pre;"> - </span>
@@ -1565,7 +1565,7 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
 					</div>
 				</div>
 				<div class="form-control">
-					<label for="fragmentIntervalMin">🕞 Interval</label>
+					<label for="fragmentIntervalMin">ðŸ•ž Interval</label>
 					<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline;">
 						<input type="number" id="fragmentIntervalMin" name="fragmentIntervalMin"
     						value="${intervalMin}" max="30" required>
@@ -1575,10 +1575,10 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
 					</div>
 				</div>
 				<div class="form-control">
-					<label for="outProxy">✈️ Chain Proxy</label>
+					<label for="outProxy">âœˆï¸ Chain Proxy</label>
 					<input type="text" id="outProxy" name="outProxy" value="${outProxy}">
 				</div>
-                <h2>ROUTING RULES ⚙️</h2>
+                <h2>ROUTING RULES âš™ï¸</h2>
 				<div class="form-control" style="margin-bottom: 20px;">			
                     <div class="routing">
                         <input type="checkbox" id="block-ads" name="block-ads" style="margin: 0 10px 0 0;" value="true" ${blockAds ? 'checked' : ''}>
@@ -1589,13 +1589,13 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
                         <label for="bypass-iran">Direct Iran</label>
 					</div>
 				</div>
-                <h2>CLEAN IP ⚙️</h2>
+                <h2>CLEAN IP âš™ï¸</h2>
 				<div class="form-control">
-					<label for="cleanIPs">✨ Clean IPs</label>
+					<label for="cleanIPs">âœ¨ Clean IPs</label>
 					<input type="text" id="cleanIPs" name="cleanIPs" value="${cleanIPs.replaceAll(",", " , ")}">
 				</div>
                 <div class="form-control">
-                    <label>🔎 Online Scanner</label>
+                    <label>ðŸ”Ž Online Scanner</label>
                     <a href="https://scanner.github1.cloud/" id="scanner" name="scanner" target="_blank">
                         <button type="button" class="button">
                             Scan now
@@ -1605,12 +1605,12 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
                 </div>
 				<div id="apply" class="form-control">
 					<div style="grid-column: 2; width: 100%;">
-						<input type="submit" id="applyButton" class="button disabled" value="APPLY SETTINGS 💥" form="configForm">
+						<input type="submit" id="applyButton" class="button disabled" value="APPLY SETTINGS ðŸ’¥" form="configForm">
 					</div>
 				</div>
 			</form>
             <hr>            
-			<h2>NORMAL CONFIGS 🔗</h2>
+			<h2>NORMAL CONFIGS ðŸ”—</h2>
 			<div class="table-container">
 				<table id="normal-configs-table">
 					<tr>
@@ -1689,7 +1689,7 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
 				</table>
 			</div>
 			<hr>
-			<h2>FRAGMENT SUB ⛓️</h2>
+			<h2>FRAGMENT SUB â›“ï¸</h2>
 			<div class="table-container">
                 <table id="frag-sub-table">
                     <tr>
@@ -1722,7 +1722,7 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
                     </tr>
                 </table>
             </div>
-            <h2>FRAGMENT - NEKORAY ⛓️</h2>
+            <h2>FRAGMENT - NEKORAY â›“ï¸</h2>
             <div class="table-container">
 				<table id="custom-configs-table">
 					<tr style="text-wrap: nowrap;">
@@ -1863,7 +1863,7 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
 			textarea.select();
 			document.execCommand('copy');
 			document.body.removeChild(textarea);
-			alert('📋 Copied to clipboard:\\n\\n' +  value);
+			alert('ðŸ“‹ Copied to clipboard:\\n\\n' +  value);
 		}
 
         const applySettings = async (event, configForm) => {
@@ -1892,24 +1892,24 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
             });
     
             if (invalidIPs.length) {
-                alert('⛔ Invalid IPs or Domains 🫤\\n\\n' + invalidIPs.map(ip => '⚠️ ' + ip).join('\\n'));
+                alert('â›” Invalid IPs or Domains ðŸ«¤\\n\\n' + invalidIPs.map(ip => 'âš ï¸ ' + ip).join('\\n'));
                 return false;
             }
 
             if (lengthMin >= lengthMax || intervalMin > intervalMax) {
-                alert('⛔ Minimum should be smaller or equal to Maximum! 🫤');               
+                alert('â›” Minimum should be smaller or equal to Maximum! ðŸ«¤');               
                 return false;
             }
 
             if (!(isVless && (hasSecurity && validSecurityType || !hasSecurity) && validTransmission) && chainProxy) {
-                alert('⛔ Invalid Config! 🫤 \\n - The chain proxy should be VLESS!\\n - Transmission should be GRPC,WS or TCP\\n - Security should be TLS,Reality or None');               
+                alert('â›” Invalid Config! ðŸ«¤ \\n - The chain proxy should be VLESS!\\n - Transmission should be GRPC,WS or TCP\\n - Security should be TLS,Reality or None');               
                 return false;
             }
 
             try {
                 document.body.style.cursor = 'wait';
                 const applyButtonVal = applyButton.value;
-                applyButton.value = '⌛ Loading...';
+                applyButton.value = 'âŒ› Loading...';
 
                 const response = await fetch('/panel', {
                     method: 'POST',
@@ -1921,12 +1921,12 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
                 applyButton.value = applyButtonVal;
 
                 if (response.ok) {
-                    alert('Parameters applied successfully 😎');
+                    alert('Parameters applied successfully ðŸ˜Ž');
                     window.location.reload(true);
                 } else {
                     const errorMessage = await response.text();
                     console.error(errorMessage, response.status);
-                    alert('⚠️ Session expired! Please login again.');
+                    alert('âš ï¸ Session expired! Please login again.');
                     window.location.href = '/login';
                 }           
             } catch (error) {
@@ -1972,7 +1972,7 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
             const isLongEnough = newPassword.length >= 8;
 
             if (!(hasCapitalLetter && hasNumber && isLongEnough)) {
-                passwordError.textContent = '⚠️ Password must contain at least one capital letter, one number, and be at least 8 characters long.';
+                passwordError.textContent = 'âš ï¸ Password must contain at least one capital letter, one number, and be at least 8 characters long.';
                 return false;
             }
                     
@@ -1989,17 +1989,17 @@ const renderHomePage = async (env, hostName, fragConfigs) => {
                 if (response.ok) {
                     modal.style.display = "none";
                     document.body.style.overflow = "";
-                    alert("Password changed successfully! 👍");
+                    alert("Password changed successfully! ðŸ‘");
                     window.location.href = '/login';
                 } else if (response.status === 401) {
                     const errorMessage = await response.text();
-                    passwordError.textContent = '⚠️ ' + errorMessage;
+                    passwordError.textContent = 'âš ï¸ ' + errorMessage;
                     console.error(errorMessage, response.status);
-                    alert('⚠️ Session expired! Please login again.');
+                    alert('âš ï¸ Session expired! Please login again.');
                     window.location.href = '/login';
                 } else {
                     const errorMessage = await response.text();
-                    passwordError.textContent = '⚠️ ' + errorMessage;
+                    passwordError.textContent = 'âš ï¸ ' + errorMessage;
                     console.error(errorMessage, response.status);
                     return false;
                 }
@@ -2085,7 +2085,7 @@ const renderLoginPage = async () => {
     </head>
     <body>
         <div class="container">
-            <h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> 💦</h1>
+            <h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> ðŸ’¦</h1>
             <div class="form-container">
                 <h2>User Login</h2>
                 <form id="loginForm">
@@ -2115,7 +2115,7 @@ const renderLoginPage = async () => {
                 if (response.ok) {
                     window.location.href = '/panel';
                 } else {
-                    passwordError.textContent = '⚠️ Wrong Password!';
+                    passwordError.textContent = 'âš ï¸ Wrong Password!';
                     const errorMessage = await response.text();
                     console.error('Login failed:', errorMessage);
                 }
@@ -2156,13 +2156,13 @@ const renderErrorPage = (message, error, refer) => {
 
     <body>
         <div id="error-container">
-            <h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> 💦</h1>
+            <h1>BPB Panel <span style="font-size: smaller;">${panelVersion}</span> ðŸ’¦</h1>
             <div id="error-message">
                 <h2>${message} ${refer 
                     ? 'Please try again or refer to <a href="https://github.com/bia-pain-bache/BPB-Worker-Panel/blob/main/README.md">documents</a>' 
                     : ''}
                 </h2>
-                <p><b>${error ? `⚠️ ${error}` : ''}</b></p>
+                <p><b>${error ? `âš ï¸ ${error}` : ''}</b></p>
             </div>
         </div>
     </body>
