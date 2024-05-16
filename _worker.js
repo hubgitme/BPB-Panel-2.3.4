@@ -11,7 +11,7 @@ let userID = '5b7b2c95-43dc-44c9-b9c5-ebaddf02f62a';
 
 // https://www.nslookup.io/domains/cdn.xn--b6gac.eu.org/dns-records/
 // https://www.nslookup.io/domains/cdn-all.xn--b6gac.eu.org/dns-records/
-const proxyIPs= ['cdn.xn--b6gac.eu.org', 'cdn-all.xn--b6gac.eu.org', 'edgetunnel.anycast.eu.org'];
+const proxyIPs= ['ziboliu.com.w.cdngslb.com', 'e8-greentech.com.w.cdngslb.com', 'hairtransplant-hk-sg.com.w.kunlunsl.com'];
 
 let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 
